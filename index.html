@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fullscreen Example</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    #fullscreen-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 9999;
+    }
+    #fullscreen-object {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    function toggleFullscreen() {
+      var fullscreenContainer = document.getElementById('fullscreen-container');
+      if (fullscreenContainer.requestFullscreen) {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          fullscreenContainer.requestFullscreen();
+        }
+      } else if (fullscreenContainer.mozRequestFullScreen) {
+        if (document.mozFullScreenElement) {
+          document.mozCancelFullScreen();
+        } else {
+          fullscreenContainer.mozRequestFullScreen();
+        }
+      } else if (fullscreenContainer.webkitRequestFullscreen) {
+        if (document.webkitFullscreenElement) {
+          document.webkitExitFullscreen();
+        } else {
+          fullscreenContainer.webkitRequestFullscreen();
+        }
+      } else if (fullscreenContainer.msRequestFullscreen) {
+        if (document.msFullscreenElement) {
+          document.msExitFullscreen();
+        } else {
+          fullscreenContainer.msRequestFullscreen();
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Fullscreen Example</h1>
+  <button onclick="toggleFullscreen()">Toggle Fullscreen</button>
+  <div id="fullscreen-container">
+    <object id="fullscreen-object" data="main.swf" type="application/x-shockwave-flash"></object>
+  </div>
+</body>
+</html>
